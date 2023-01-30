@@ -5,18 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MovieService {
    @Autowired
    MovieRepository movierepository;
 
-    public  ArrayList<String> findAllMovies() {
+    public List<String> findAllMovies() {
         return movierepository.findAllMovies();
     }
 
-    public  Director getDirectorByName(String name) {
-        return movierepository.getDirectorByName(name);
+    public  Director getDirectorByName(String dirname) {
+        return movierepository.getDirectorByName(dirname);
     }
 
     public String addMovie(Movie movie) {
@@ -35,8 +36,11 @@ public class MovieService {
     public Movie getMovieByName(String name) {
         return movierepository.getMovieByName(name);
     }
-
-    public ArrayList<String> getMoviesByDirectorName(String name ) {
-        return movierepository.getMoviesByDirectorName(name);
+    public List<String> getMoviesByDirectorName( String dirname){
+        return movierepository.getMoviesByDirectorName(dirname);
     }
+
+//    public List<String> getMoviesByDirectorName(String dirname ) {
+//        return movierepository.getMoviesByDirectorName(dirname);
+//    }
 }

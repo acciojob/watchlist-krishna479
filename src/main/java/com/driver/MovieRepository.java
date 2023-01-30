@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-//import javafx.util.Pair;
+
 @Service
 public class MovieRepository {
     HashMap<String,Movie> db = new HashMap<>();
@@ -29,9 +29,9 @@ public class MovieRepository {
 
     public String addMovieDirectorPair(String name, String dirname) {
 
-           ArrayList temp =  pair.getOrDefault(name,new ArrayList<>());
-           temp.add(dirname);
-           pair.put(name, temp);
+           ArrayList temp =  pair.getOrDefault(dirname,new ArrayList<>());
+           temp.add(name);
+           pair.put(dirname, temp);
 
        return"SUCCESS";
     }
@@ -42,20 +42,22 @@ public class MovieRepository {
 
     }
 
-    public Director getDirectorByName(String name) {
-        return dbb.get(name);
+    public Director getDirectorByName(String dirname) {
+        return dbb.get(dirname);
+    }
+    public List<String> getMoviesByDirectorName( String dirname){
+        return pair.get(dirname);
     }
 
-    public ArrayList<String> getMoviesByDirectorName(String  name) {
-       return pair.get(name);
+//    public List<String> getMoviesByDirectorName(String  dirname) {
+//
+//       return pair.get(dirname);
+//
+//    }
 
-    }
+    public List<String> findAllMovies() {
+        //ArrayList<String> hm = new ArrayList<>();
 
-    public ArrayList<String> findAllMovies() {
-        ArrayList<String > hm = new ArrayList<>();
-        for(String s: db.keySet()){
-            hm.add(s);
-        }
-        return hm;
+        return new ArrayList<>(db.keySet());
     }
 }

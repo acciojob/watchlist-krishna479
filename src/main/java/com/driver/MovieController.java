@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class MovieController {
@@ -32,16 +33,20 @@ return movieservice.addDirector(director);
 
     }
     @GetMapping("get-director-by-name/{name}")
-    public Director  getDirectorByName(String name){
-    return movieservice.getDirectorByName(name);
+    public Director  getDirectorByName(@PathVariable("name")  String dirname){
+    return movieservice.getDirectorByName(dirname);
     }
 
+
+//    public List<String> getMoviesByDirectorName( String director){
+//        return pairMap.get(director);
+//    }
     @GetMapping("/get-movies-by-director-name/{director}")
-    public ArrayList<String> getMoviesByDirectorName(@PathVariable("name") String name){
-    return movieservice.getMoviesByDirectorName(name);
+    public List<String> getMoviesByDirectorName(@PathVariable("dirname") String dirname){
+    return movieservice.getMoviesByDirectorName(dirname);
     }
     @GetMapping("/get-all-movies")
-    public ArrayList<String> findAllMovies(){
+    public List<String> findAllMovies(){
     return movieservice.findAllMovies();
 
     }
