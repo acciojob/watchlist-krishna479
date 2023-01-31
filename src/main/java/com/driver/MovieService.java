@@ -42,5 +42,12 @@ public Movie getMovieByName(String name) {
         return movierepository.findAllMovies();
     }
 
+//8)  delete a director and its movies from record
+    public String deleteDirectorByName(String dirname) {
+        return movierepository.deleteDirectorByName(dirname);
+    }
 
+    public String deleteAllDirectors() {
+        return movierepository.deleteAllDirectors();
+    }
 }

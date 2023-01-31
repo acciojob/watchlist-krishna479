@@ -55,6 +55,19 @@ public List getMoviesByDirectorName(@PathVariable String director){
     return movieservice.findAllMovies();
 
     }
+    //8) delete a director and its movies from record
+    @DeleteMapping("/delete-director-by-name")
+    public String deleteDirectorByName(@RequestParam ("dirname") String dirname){
+
+    return movieservice.deleteDirectorByName(dirname);
+    }
+
+    // 9) delete all movie
+    @DeleteMapping("/delete-all-directors")
+      public String deleteAllDirectors(){
+    return movieservice.deleteAllDirectors();
+    }
+
 
 
 

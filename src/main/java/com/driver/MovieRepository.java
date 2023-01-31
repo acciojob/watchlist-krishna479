@@ -70,4 +70,28 @@ public class MovieRepository {
 
        return hm;
     }
+// 8 delete a director and its movies from record
+    public String deleteDirectorByName(String dirname) {
+        if(directorMoviePairing.containsKey(dirname)){
+            ArrayList<String> result = directorMoviePairing.get(dirname);
+            for(String s: result){
+                    db.remove(s);
+            }
+            dbb.remove(dirname);
+            directorMoviePairing.remove(dirname);
+        }
+        return "Success";
+    }
+
+    public String deleteAllDirectors() {
+        dbb.clear();
+        for(List<String>ans :directorMoviePairing.values()) {
+            for (String s:ans){
+                db.remove(s);
+            }
+
+        }
+        directorMoviePairing.clear();
+        return "Success";
+    }
 }
