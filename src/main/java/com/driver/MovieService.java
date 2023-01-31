@@ -11,36 +11,36 @@ import java.util.List;
 public class MovieService {
    @Autowired
    MovieRepository movierepository;
-
-    public List<String> findAllMovies() {
-        return movierepository.findAllMovies();
-    }
-
-    public  Director getDirectorByName(String dirname) {
-        return movierepository.getDirectorByName(dirname);
-    }
-
+//1)Adding movie
     public String addMovie(Movie movie) {
         return movierepository.addMovie(movie);
     }
 
-
+    //2)Adding director
     public String addDirector(Director director) {
         return movierepository.addDirector(director);
     }
+   // 3) Adding pair
+     public String addMovieDirectorPair(String name, String dirname) {
+            return movierepository.addMovieDirectorPair(name,dirname);
+        }
+//4)getmovie by movie name
+public Movie getMovieByName(String name) {
+    return movierepository.getMovieByName(name);
+}
 
-    public String addMovieDirectorPair(String name, String dirname) {
-        return movierepository.addMovieDirectorPair(name,dirname);
+//5) getdirector by director name
+ public  Director getDirectorByName(String dirname) {
+        return movierepository.getDirectorByName(dirname);
+    }
+    // 6) get movies by name of director
+    public List getMoviesByDirectorName(String directorName){
+        return movierepository.getMoviesByDirectorName(directorName);
+    }
+//7) get all movies
+    public List<String> findAllMovies() {
+        return movierepository.findAllMovies();
     }
 
-    public Movie getMovieByName(String name) {
-        return movierepository.getMovieByName(name);
-    }
-    public List<String> getMoviesByDirectorName( String dirname){
-        return movierepository.getMoviesByDirectorName(dirname);
-    }
 
-//    public List<String> getMoviesByDirectorName(String dirname ) {
-//        return movierepository.getMoviesByDirectorName(dirname);
-//    }
 }

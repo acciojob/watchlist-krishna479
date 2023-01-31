@@ -11,53 +11,63 @@ import java.util.List;
 public class MovieRepository {
     HashMap<String,Movie> db = new HashMap<>();
     HashMap<String,Director> dbb = new HashMap<>();
-    HashMap<String, ArrayList<String>>pair = new HashMap<>();
-
+    HashMap<String, ArrayList<String>> directorMoviePairing = new HashMap<>();
+//1)Adding movies
 
     public String addMovie(Movie movie) {
         String name= movie.getName();
         db.put(name,movie);
         return "SUCCESS";
     }
-
+//2)Adding director
     public String addDirector(Director director) {
         String name = director.getName();
         dbb.put(name,director);
         return "SUCCESS";
     }
 
-
+//3) adding pair
     public String addMovieDirectorPair(String name, String dirname) {
 
-           ArrayList temp =  pair.getOrDefault(dirname,new ArrayList<>());
+           ArrayList temp =  directorMoviePairing.getOrDefault(dirname,new ArrayList<>());
            temp.add(name);
-           pair.put(dirname, temp);
+        directorMoviePairing.put(dirname, temp);
 
        return"SUCCESS";
     }
+    //4) get movie by moviename
 
     public Movie getMovieByName(String name) {
 
             return db.get(name);
 
     }
-
+//5) get director by directorname
     public Director getDirectorByName(String dirname) {
         return dbb.get(dirname);
     }
-    public List<String> getMoviesByDirectorName( String dirname){
-        return pair.get(dirname);
+
+ //6) get movies by name of director
+
+    public List getMoviesByDirectorName(String directorName){
+        List<String> result=new ArrayList<>();
+
+        if(directorMoviePairing.containsKey(directorName)){
+            result=directorMoviePairing.get(directorName);
+        }
+
+        return result;
     }
 
-//    public List<String> getMoviesByDirectorName(String  dirname) {
-//
-//       return pair.get(dirname);
-//
-//    }
+
+//7) get all movies by default
 
     public List<String> findAllMovies() {
-        //ArrayList<String> hm = new ArrayList<>();
+       ArrayList<String> hm = new ArrayList<>();
+       for(String s: db.keySet()){
+           hm.add(s);
+       }
 
-        return new ArrayList<>(db.keySet());
+       return hm;
     }
 }
