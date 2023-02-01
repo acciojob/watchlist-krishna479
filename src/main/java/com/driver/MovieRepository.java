@@ -91,6 +91,7 @@ public class MovieRepository {
             }
 
         }
+        //db.clear()
         directorMoviePairing.clear();
         return "Success";
     }
